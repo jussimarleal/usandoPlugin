@@ -1,22 +1,24 @@
 // This is a JavaScript file
-let elemento = document.querySelector("#camera");
 
-$(document).on("click", elemento, function(){
-  navigator.camera.getPicture(onSuccess, onFail, { 
-    quality: 50,
-    destinationType: 1,
-    MediaType: 1,
-    PictureSourceType: 1,
-    saveToPhotoAlbum: Camera.saveToPhotoAlbum.1
+ $(document).on("click", "#camera", function tirarFoto(){
+
+     navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+    destinationType: Camera.DestinationType.FILE_URI,
+     saveToPhotoAlbum: true
      });
 
-function onSuccess(imageURI) {
-    var image = document.getElementById('imagem');
-    image.src = imageURI;
-}
+    function onSuccess(imageURI) {
+    var imagem = document.getElementById('imagem');
+    imagem.src = imageURI;
+    }
 
-function onFail(message) {
+     function onFail(message) {
     alert('Failed because: ' + message);
-}
+  };
+ });
 
+$(document).on("click", "#salvar", function(){
+    let foto = document.querySelectorAll("img");
+    
 });
+
